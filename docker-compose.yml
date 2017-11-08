@@ -1,0 +1,10 @@
+version: '2'
+services:
+  antimalware:
+          image: antim
+          ports:
+             - 80:80 
+          volumes:
+             - ./webui:/var/www/html
+             - ./antim:/antim
+             - ./antim/clamav/conf:/etc/clamav

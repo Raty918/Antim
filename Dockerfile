@@ -6,9 +6,9 @@ RUN apt-get update &&\
     apt-get upgrade -y &&\
 
     # Install Apache and PHP for WebUI  
-    apt-get install -y apache2 php5 libapache2-mod-php5 &&\
+    apt-get install -y apache2 php5 libapache2-mod-php5 php5-sqlite sqlite &&\
     # Antimalware requirements
-    apt-get install -y python yara python-yara clamav ssdeep && apt-get clean && rm -rf /var/lib/apt/lists/* 
+    apt-get install -y python python-pip yara python-yara clamav ssdeep && pip install team-cymru-api && apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 #ENVIRONMENT Section
     # Apache server

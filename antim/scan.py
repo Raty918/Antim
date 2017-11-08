@@ -85,7 +85,6 @@ def cymruscan(data):
             s.send('begin\r\n')
             s.recv(1024)
             s.send(request)
-            printf()
             response = s.recv(1024)
             s.send('end\r\n')
             s.close()

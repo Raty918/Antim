@@ -9,9 +9,15 @@ cleanup (){
 trap cleanup SIGINT SIGTERM
 
 #Services
+
+## Apache
 service apache2 start
+
+##Clamav
 chown -R clamav:clamav /antim/clamav
+echo "Updating Signatures Database ..."
 freshclam
+echo "Completed: Container is now runnable"
 
 #Infinite Loop
 while [ 1 ] 

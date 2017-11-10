@@ -79,13 +79,19 @@ def cymruscan(data):
         md5 = md5sum(data)
         md5 = md5['result']
         request = '%s\r\n' % md5
+
+        team_cymru = TeamCymruApi()
+        resp =  team_cymru.get_cymru('e1112134b6dcc8bed54e0e34d8ac272795e73d74')
+        print json.dumps(resp, sort_keys=False, indent=4)
+
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             s.connect(('hash.cymru.com', 43))
             s.send('begin\r\n')
-            s.recv(1024)
+            s.recv(2048)
             s.send(request)
-            response = s.recv(1024)
+            response = s.recv(2048)
             s.send('end\r\n')
             s.close()
             if len(response) > 0:

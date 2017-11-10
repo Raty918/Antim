@@ -17,15 +17,9 @@ from optparse import OptionParser
 # various AV products
 yara_conf_file = "magic.yara"
 yara_packer_file = "packer.yara"
-path_to_ssdeep = "/usr/local/bin/ssdeep"
+path_to_ssdeep = "/usr/bin/ssdeep"
 path_to_clamscan = "/usr/bin/clamscan"
 ssdeep_params = '-l'
-
-# add new functions by invoking the scanner
-# and returning a dictionary that contains
-# the keys 'name' and 'result'
-# where 'name' is the name of the scanner
-# and 'result' contains a string representing the results
 
 def md5sum(data):
 	m = md5()
@@ -81,9 +75,9 @@ def cymruscan(data):
         try:
             s.connect(('hash.cymru.com', 43))
             s.send('begin\r\n')
-            s.recv(2048)
+            s.recv(1024)
             s.send(request)
-            response = s.recv(2048)
+            response = s.recv(1024)
             s.send('end\r\n')
             s.close()
             if len(response) > 0:
@@ -141,12 +135,6 @@ def main():
 	results.append(yarascan(data))
 	results.append(yara_packer(data))
 	results.append(cymruscan(data))
-        
-        print "\r\n"
-        print results[2]['result']
-        print results[0]['result']
-        print results[1]['result']
-
 
 	if opts.verbose:
 		print "[+] Using YARA signatures %s" % yara_conf_file
@@ -156,8 +144,8 @@ def main():
 		if ("ERROR" in result['result']) and (opts.verbose == False):
 			continue
 	        print "%20s\t%-s" % (result['name'],result['result'])
-        
-        #Insert to the db
+
+        #Insert into the Database
         if not select_db_signature(results[2]['result']):
             insert_db_signature(results[2]['result'], results[0]['result'], results[1]['result'])
 

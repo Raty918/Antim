@@ -3,15 +3,14 @@
 
 import sys
 import os
+import re
 import yara
-from hashlib import md5
 import subprocess
 import socket
+import sqlite3
 from time import localtime, strftime
-import re
+from hashlib import md5
 from optparse import OptionParser
-import json
-from team_cymru_api import TeamCymruApi
 
 
 # configuration information to use when processing the 
@@ -38,7 +37,7 @@ def ssdeep(fname):
 		output = subprocess.Popen([path_to_ssdeep, ssdeep_params, fname], stdout=subprocess.PIPE).communicate()[0]
 		response = output.split()[1].split(',')[0]
 	else:
-		response = 'ERROR - SSDEEP NOT FOUND'
+		response = 'ERROR - SSDEEP Does Not Exist'
 	return ({'name': 'ssdeep', 'result': response})
 
 def yarascan(data2):
@@ -75,16 +74,9 @@ def clamscan(fname):
 	
 def cymruscan(data):
 	# this scanner works by sending a request to hash.cymru.com
-	# the api will return a json response.
         md5 = md5sum(data)
         md5 = md5['result']
         request = '%s\r\n' % md5
-
-        team_cymru = TeamCymruApi()
-        resp =  team_cymru.get_cymru('e1112134b6dcc8bed54e0e34d8ac272795e73d74')
-        print json.dumps(resp, sort_keys=False, indent=4)
-
-
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             s.connect(('hash.cymru.com', 43))
@@ -107,6 +99,22 @@ def filesize(data):
 	
 def filename(filename):
 	return({'name': 'filename', 'result': filename})
+
+def insert_db_signature(md5,filename,filesize):
+        conn = sqlite3.connect("db/antim.db")
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO signatures (md5,filename,filesize) VALUES(?,?,?)", (md5, filename, filesize))
+        conn.commit()
+        conn.close()
+
+def select_db_signature(md5):
+        conn = sqlite3.connect("db/antim.db")
+        cursor = conn.cursor()
+        cursor.execute ("SELECT * FROM signatures WHERE md5 = '%s'" % md5)
+        if cursor.fetchone() is None:
+            return False
+        return True
+
 
 def main():
 	parser = OptionParser()
@@ -133,7 +141,13 @@ def main():
 	results.append(yarascan(data))
 	results.append(yara_packer(data))
 	results.append(cymruscan(data))
-		
+        
+        print "\r\n"
+        print results[2]['result']
+        print results[0]['result']
+        print results[1]['result']
+
+
 	if opts.verbose:
 		print "[+] Using YARA signatures %s" % yara_conf_file
 		print "[+] Using ClamAV signatures %s" % clam_conf_file
@@ -141,7 +155,12 @@ def main():
 	for result in results:
 		if ("ERROR" in result['result']) and (opts.verbose == False):
 			continue
-		print "%20s\t%-s" % (result['name'],result['result'])
+	        print "%20s\t%-s" % (result['name'],result['result'])
+        
+        #Insert to the db
+        if not select_db_signature(results[2]['result']):
+            insert_db_signature(results[2]['result'], results[0]['result'], results[1]['result'])
+
 	print "\r\n"
 
 if __name__ == '__main__':

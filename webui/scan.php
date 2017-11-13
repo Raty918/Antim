@@ -5,7 +5,7 @@ if(!$_SESSION['loged']){
 }else{
 	if (!empty($_POST["file"])){
 	//	$command = escapeshellcmd('/antim/scan.py -f '.$_POST["file"].'');
-	$command = escapeshellcmd('python /antim/scan.py -f /antim/sample9 ');
+	$command = escapeshellcmd('python /antim/scan.py -f /antim/to_analyze/* ');
 		echo $command;
 		$output = shell_exec($command);
 		echo $output;
@@ -28,7 +28,7 @@ if(!$_SESSION['loged']){
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 <label for='file' >PathFile*:</label>
 <input type='file' name='file' id='file' />
-<input type='submit' name='Submit' value='Submit' />
+<input type='submit' name='Scan' value='Scan' />
 </fieldset>
 </form>
 </div>

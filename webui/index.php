@@ -15,6 +15,7 @@ session_start();
    <?php if($_SESSION['loged']): ?>
       <a href="logout.php" ><input type="button" value="Logout" /></a>
       <a href="signature.php" ><input type="button" value="Signatures"/></a>
+      <a href="scan.php" ><input type="button" value="Scan"/></a>
    <?php else: ?>
       <a href="login.php" ><input type="button" value="Login" /></a>
    <?php endif; ?>

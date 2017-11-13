@@ -95,18 +95,20 @@ def filename(filename):
 	return({'name': 'filename', 'result': filename})
 
 def insert_db_signature(md5,filename,filesize):
-        conn = sqlite3.connect("db/antim.db")
+        conn = sqlite3.connect("/antim/db/antim.db")
         cursor = conn.cursor()
         cursor.execute("INSERT INTO signatures (md5,filename,filesize) VALUES(?,?,?)", (md5, filename, filesize))
         conn.commit()
         conn.close()
 
 def select_db_signature(md5):
-        conn = sqlite3.connect("db/antim.db")
+        conn = sqlite3.connect("/antim/db/antim.db")
         cursor = conn.cursor()
         cursor.execute ("SELECT * FROM signatures WHERE md5 = '%s'" % md5)
         if cursor.fetchone() is None:
+            conn.close()
             return False
+        conn.close()
         return True
 
 
@@ -134,7 +136,7 @@ def main():
 	results.append(clamscan(opts.filename))
 	results.append(yarascan(data))
 	results.append(yara_packer(data))
-	results.append(cymruscan(data))
+        results.append(cymruscan(data))
 
 	if opts.verbose:
 		print "[+] Using YARA signatures %s" % yara_conf_file
@@ -149,7 +151,7 @@ def main():
         if not select_db_signature(results[2]['result']):
             insert_db_signature(results[2]['result'], results[0]['result'], results[1]['result'])
 
-	print "\r\n"
+	print "\r\n "
 
 if __name__ == '__main__':
 	main()

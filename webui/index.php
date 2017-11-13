@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +10,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
 <div class="container">
-  <h2>Home</h2>
-  <form action="login.php">
-    <input type="submit" value="Login" />
-</form>
+   <h2>Home</h2>
+   <?php if($_SESSION['loged']): ?>
+      <a href="logout.php" ><input type="button" value="Logout" /></a>
+      <a href="signature.php" ><input type="button" value="Signatures"/></a>
+   <?php else: ?>
+      <a href="login.php" ><input type="button" value="Login" /></a>
+   <?php endif; ?>
 </div>
-
 </body>
 </html>

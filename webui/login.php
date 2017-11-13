@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION['loged'])){
+	header('Location: index.php');
+}
 if (!empty($_POST["password"])){
 	if (!empty($_POST["username"])){
 	$dir = 'sqlite:/antim/db/antim.db';

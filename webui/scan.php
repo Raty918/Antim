@@ -3,12 +3,14 @@ session_start();
 if(!$_SESSION['loged']){
             header('Location: index.php');
 }else{
-	if (!empty($_POST["file"])){
-	//	$command = escapeshellcmd('/antim/scan.py -f '.$_POST["file"].'');
-	$command = escapeshellcmd('python /antim/scan.py -f /antim/to_analyze/* ');
-		echo $command;
+	if (isset($_POST['Scan'])){
+		$path="/antim/to_analyze/";
+		$files = preg_grep('/^([^.])/', scandir($path));
+		foreach($files as $file) {
+		$command = escapeshellcmd('python /antim/scan.py -f'.$path.''.$file.'');
 		$output = shell_exec($command);
-		echo $output;
+		echo '<br>'.$output.'<br>';
+		}
 	}
 }
 ?>
@@ -21,13 +23,11 @@ if(!$_SESSION['loged']){
 </head>
 <body>
 <div class="container">
-  <h2>Scan Page</h2>
+  <h2>Scan Page (folder to_analyze)</h2>
 <form id='scan' action='scan.php' method='post' accept-charset='UTF-8'>
 <fieldset>
 <legend>Scan</legend>
 <input type='hidden' name='submitted' id='submitted' value='1'/>
-<label for='file' >PathFile*:</label>
-<input type='file' name='file' id='file' />
 <input type='submit' name='Scan' value='Scan' />
 </fieldset>
 </form>

@@ -16,6 +16,7 @@ session_start();
       <a href="logout.php" ><input type="button" value="Logout" /></a>
       <a href="signature.php" ><input type="button" value="Signatures"/></a>
       <a href="scan.php" ><input type="button" value="Scan"/></a>
+      <a href="account.php" ><input type="button" value="Account"/></a>
    <?php else: ?>
       <a href="login.php" ><input type="button" value="Login" /></a>
    <?php endif; ?>

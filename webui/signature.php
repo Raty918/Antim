@@ -9,7 +9,7 @@ if(!$_SESSION['loged']){
 	$count=1;
 	foreach($dbh->query($query) as $row){
 		echo "#".$count."<br>";
-		echo "md5: " . $row[0]. " - Filename: " . $row[1]. " - Filesize: " . $row[2]. "<br>";
+		echo "md5: " . $row[0]. " - Filename: " . $row[1]. " - Filesize: " . $row[2]. " - Date: " . $row[3]. "<br>";
 		$count++;
 	}
 }

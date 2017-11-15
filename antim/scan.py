@@ -97,7 +97,7 @@ def filename(filename):
 def insert_db_signature(md5,filename,filesize):
         conn = sqlite3.connect("/antim/db/antim.db")
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO signatures (md5,filename,filesize) VALUES(?,?,?)", (md5, filename, filesize))
+        cursor.execute("INSERT INTO signatures (md5,filename,filesize,timestamp) VALUES(?,?,?,datetime(CURRENT_TIMESTAMP,'localtime'))", (md5, filename, filesize))
         conn.commit()
         conn.close()
 

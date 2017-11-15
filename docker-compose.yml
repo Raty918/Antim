@@ -8,3 +8,6 @@ services:
              - ./webui:/var/www/html
              - ./antim:/antim
              - ./antim/clamav/conf:/etc/clamav
+          environment:
+             - SET_CONTAINER_TIMEZONE=true
+             - CONTAINER_TIMEZONE=Asia/Tokyo

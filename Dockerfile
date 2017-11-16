@@ -6,7 +6,7 @@ RUN apt-get update &&\
     apt-get upgrade -y &&\
 
     # Install Apache and PHP for WebUI  
-    apt-get install -y apache2 php5 libapache2-mod-php5 php5-sqlite sqlite &&\
+    apt-get install -y openssl apache2 php5 libapache2-mod-php5 php5-sqlite sqlite &&\
     # Antimalware requirements
     apt-get install -y python yara python-yara clamav ssdeep && apt-get clean && rm -rf /var/lib/apt/lists/* 
 
@@ -19,7 +19,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 # EXPOSE Section
        # Apache server
 EXPOSE 80 
-
+EXPOSE 443
 # WORKDIR Section
 WORKDIR /antim
 

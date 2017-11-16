@@ -14,15 +14,14 @@ if (!empty($_POST["password"])){
 }?>
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <title>Account</title>
+  <title>Change Account Credentials</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="container">
-  <h2>Account Page</h2>
+  <h2>Modify Account Page</h2>
 <form id='account' action='account.php' method='post' accept-charset='UTF-8'>
 <fieldset>
 <legend>Account</legend>

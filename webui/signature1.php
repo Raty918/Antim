@@ -87,16 +87,25 @@ session_start();
 </div>
 <div id="content-wrapper">
 	<div style="border:1px #e8e8e8 solid;margin:0px 0px 10px 0px">
-	  <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Admin Menu Content</div>
-	  <div style="padding:8px;font-size:13px;">TEXT</div>
+	  <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Signature Reasearch</div>
+	  <div class="container">
+<form id='signature' action='signature.php' method='post' accept-charset='UTF-8'>
+<input type='hidden' name='submitted' id='submitted' value='1'/>
+        <label for='md5' >MD5:</label>
+        <input type='text' name='md5' id='md5'  maxlength="32" />
+        <label for='filename' >Filename:</label>
+        <input type='text' name='filename' id='filename'/>
+        <label for='filesize' >Filesize:</label>
+	<input type='number' name='filesize' id='filsize'/>
+        <label for='Date' >Datetime:</label>
+        <input type='text' name='date' id='date' maxlength="19" />
+
+<input type='submit' name='Search' value='Search' />
+<input type="reset">
+</form>
+</div>
+
 	</div>
-	<div style="border:1px #e8e8e8 solid;width:49%;float:left;margin:10px 0px 10px 0px">
-	 <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">GRAPH</div>
-	 <div style="padding:8px;font-size:13px;">GRAPH</div>
-	</div>
-	<div style="border:1px #e8e8e8 solid;width:49%;float:right;margin:10px 0px 10px 0px">
-	 <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">CHART</div>
-	 <div style="padding:8px;font-size:13px;"> INSERT USEFULL CHART</div>
 	</div>
 </div>
 <footer>

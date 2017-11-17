@@ -24,49 +24,16 @@ session_start();
 		<li><a href='scan.php'>SCAN</a></li>
 		<li><a href='account.php'>ACCOUNT</a></li>
 	<?php else: ?>
-	<li><a button onclick="document.getElementById('id01').style.display='block'">Login</a></li>
-
-
-
-
+<li><a button onclick="document.getElementById('id01').style.display='block'">Login</a></li>
 
 
 <!-- The Modal -->
 <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'"
-class="close" title="Close Modal">&times;</span>
+<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-  <!-- Modal Content -->
-  <form class="modal-content animate" action="/login.php" method='POST'>
-    <div class="imgcontainer">
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
+<?php include frm_login.php ?>
 
-    <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" id='username' name="username" required>
-
-      <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" id='password' name="password" required>
-
-      <button type="submit">Login</button>
-      <input type="checkbox" checked="checked"> Remember me
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-
-
-
-
-
-
-
-
+</div> 
 
 
 

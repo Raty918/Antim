@@ -56,5 +56,8 @@ session_start();
 	 <div style="padding:8px;font-size:13px;"> INSERT USEFULL CHART</div>
 	</div>
 </div>
+<footer>
+  <p> GOUGAM William - 2017/18 - Nagoya Institute of Technology </p>
+</footer>
 </body>
 </html>

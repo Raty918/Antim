@@ -58,9 +58,12 @@ session_start();
 	</div>
            <!--Menu-->
 	   <div id="menu">
+               <?php if($_SESSION['loged']): ?>
 	      <a href="account.php" title="Account"><span>Account</span></a>
 	      <a href="signature.php" title="Signatures"><span>Signatures</span></a>
 	      <a href="scan.php" title="Scan"><span>Scan</span></a>
+               <?php endif; ?>
+
 	  </div>
 	<!--Menu-->
 </div>

@@ -19,31 +19,10 @@ session_start();
 	<ul>
 	<li class='active'><a href='#'>HOME</a></li>
 	<?php if($_SESSION['loged']): ?>
-
-<!-- Logout -->      
+        <!-- Logout -->      
         <li><a href='logout.php'>LOGOUT</a></li>
-
-<!-- Account Form -->
-	<li><a button onclick="document.getElementById('id01').style.display='block'">ACCOUNT</a></li>
-        <!-- The Modal -->
-        <div id="id01" class="modal">
-           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-           <!-- Modal Content -->
-           <form class="modal-content animate" action="/account.php" method='POST'>
-           <div class="container">
-              <label><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" id='username' name="username" required>
-              <label><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" id='password' name="password" required>
-              <button type="submit">Modify</button>
-           </div>
-           <div class="container" style="background-color:#f1f1f1">
-           <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-           </div>
-
 	<?php else: ?>
-<!-- Login Form -->
+        <!-- Login Form -->
 	<li><a button onclick="document.getElementById('id01').style.display='block'">LOGIN</a></li>
 	<!-- The Modal -->
 	<div id="id01" class="modal">
@@ -52,7 +31,7 @@ session_start();
 	   <!-- Modal Content -->
 	   <form class="modal-content animate" action="/login.php" method='POST'>
   	      <div class="imgcontainer">
- 	      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+ 	      <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
   	   </div>
  	   <div class="container">
     	      <label><b>Username</b></label>
@@ -79,7 +58,7 @@ session_start();
 	</div>
            <!--Menu-->
 	   <div id="menu">
-	      <a href="" title="Main"><span>Main</span></a>
+	      <a href="account.php" title="Account"><span>Account</span></a>
 	      <a href="signature.php" title="Signatures"><span>Signatures</span></a>
 	      <a href="scan.php" title="Scan"><span>Scan</span></a>
 	  </div>

@@ -40,7 +40,7 @@ if(!$_SESSION['loged']){
 </div>
 <div id="content-wrapper">
 	<div style="border:1px #e8e8e8 solid;margin:0px 0px 10px 0px">
-	  <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Signature Reasearch</div>
+	  <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Modify Account</div>
 	  <div class="container">
             <form id='account' action='f_account.php' method='post' accept-charset='UTF-8'>
               <input type='hidden' name='submitted' id='submitted' value='1'/>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,22 +66,33 @@ session_start();
 	  </div>
 	<!--Menu-->
 </div>
+<?php if($_SESSION['loged']): ?>
 <div id="content-wrapper">
 	<div style="border:1px #e8e8e8 solid;margin:0px 0px 10px 0px">
 	  <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Admin Menu Content</div>
-	  <div style="padding:8px;font-size:13px;">TEXT</div>
+	  <div style="padding:8px;font-size:13px;"><?php include('menu.php'); ?> 
+	 </div>
 	</div>
-	<div style="border:1px #e8e8e8 solid;width:49%;float:left;margin:10px 0px 10px 0px">
+	<div style="border:1px #e8e8e8 solid;width:49%;float:left;margin:10px 0px 10px 0p;">
 	 <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">GRAPH</div>
-	 <div style="padding:8px;font-size:13px;">GRAPH</div>
+	<div style="padding:8px;font-size:13px;"> <?php include("most_detected.php"); ?></div>
 	</div>
-	<div style="border:1px #e8e8e8 solid;width:49%;float:right;margin:10px 0px 10px 0px">
+	<div style="border:1px #e8e8e8 solid;width:49%;float:right;margin:10px 0px 10px 0px;">
 	 <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">CHART</div>
 	 <div style="padding:8px;font-size:13px;"> INSERT USEFULL CHART</div>
 	</div>
 </div>
+<?php else: ?>
+<div id="content-wrapper">
+        <div style="border:1px #e8e8e8 solid;margin:0px 0px 10px 0px">
+          <div style="border-bottom:1px #e8e8e8 solid;background-color:#f3f3f3;padding:8px;font-size:13px;font-weight:700;color:#45484d;">Admin Menu Content</div>
+          <div style="padding:8px;font-size:13px;color:#e8101e;"><p>You have to be connected !</p></div>
+        </div>
+</div>
+<?php endif; ?>
 <footer>
-  <p> GOUGAM William - 2017/18 - Nagoya Institute of Technology </p>
+<p> GOUGAM William - 2017/18 - Nagoya Institute of Technology </p>
 </footer>
 </body>
 </html>
+<?php $dbh->close();?>

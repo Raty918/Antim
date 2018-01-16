@@ -9,7 +9,7 @@ services:
              - ./webui:/var/www/html
              - ./antim:/antim
              - ./antim/clamav/conf:/etc/clamav
-               #- ./apache2:/etc/apache2
+             - ./apache2:/etc/apache2
           environment:
              - SET_CONTAINER_TIMEZONE=true
              - CONTAINER_TIMEZONE=Asia/Tokyo

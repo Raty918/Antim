@@ -22,14 +22,13 @@ fi
 ## Apache
 a2enmod ssl
 a2enmod headers
-a2ensite default-ssl
 service apache2 start
 
 ##Clamav
 chown -R clamav:clamav /antim/clamav
 echo "Updating Signatures Database ... ."
 freshclam
-echo "Completed: Container is now runnable."
+echo "Completed: Container is now running."
 
 #Infinite Loop
 while [ 1 ] 

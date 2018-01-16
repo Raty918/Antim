@@ -9,7 +9,7 @@ services:
              - ./webui:/var/www/html
              - ./antim:/antim
              - ./antim/clamav/conf:/etc/clamav
-        #    - ./antim/apache2:/etc/apache2 servie can't restart. PID conflitcs
+        #    - ./apache2:/etc/apache2
           environment:
              - SET_CONTAINER_TIMEZONE=true
              - CONTAINER_TIMEZONE=Asia/Tokyo

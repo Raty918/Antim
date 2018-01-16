@@ -20,6 +20,9 @@ else
 fi
 
 ## Apache
+a2enmod ssl
+a2enmod headers
+a2ensite default-ssl
 service apache2 start
 
 ##Clamav

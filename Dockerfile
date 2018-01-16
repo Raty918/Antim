@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM ubuntu:16.04
 
 # RUN Section
     # Update packages
@@ -6,7 +6,7 @@ RUN apt-get update &&\
     apt-get upgrade -y &&\
 
     # Install Apache and PHP for WebUI  
-    apt-get install -y openssl apache2 php5 libapache2-mod-php5 php5-sqlite sqlite &&\
+    apt-get install -y openssl apache2 php7.0 libapache2-mod-php7.0 php7.0-sqlite sqlite &&\
     # Antimalware requirements
     apt-get install -y python yara python-yara clamav ssdeep && apt-get clean && rm -rf /var/lib/apt/lists/* 
 

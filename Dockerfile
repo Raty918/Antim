@@ -8,7 +8,7 @@ RUN apt-get update &&\
     # Install Apache and PHP for WebUI  
     apt-get install -y openssl apache2 php7.0 libapache2-mod-php7.0 php7.0-sqlite sqlite &&\
     # Antimalware requirements
-    apt-get install -y python yara python-yara clamav ssdeep && apt-get clean && rm -rf /var/lib/apt/lists/* 
+    apt-get install -y python yara python-yara python-pefile clamav ssdeep && apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 #ENVIRONMENT Section
     # Apache server

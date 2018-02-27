@@ -1,7 +1,7 @@
 version: '2'
 services:
   antimalware:
-          image: antim_2
+          image: antim
           ports:
              - 80:80
              - 443:443 
